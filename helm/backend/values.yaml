@@ -1,0 +1,7 @@
+image:
+  repository: backend
+  tag: dev
+  pullPolicy: IfNotPresent
+
+service:
+  port: 3000
