@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marriage-marriage-backend
+  namespace: default
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: marriage-backend
+  template:
+    metadata:
+      labels:
+        app: marriage-backend
+    spec:
+      serviceAccountName: marriage-marriage-backend
+      containers:
+      - name: marriage-backend
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
