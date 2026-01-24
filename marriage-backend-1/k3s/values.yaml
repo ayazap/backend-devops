@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: your-docker-hub-username/marriage-backend
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 3000
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
